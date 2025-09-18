@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cookbook Project</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fdf6e3;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #ff7043;
+      color: white;
+      padding: 15px;
+      text-align: center;
+    }
+    .container {
+      display: flex;
+      gap: 20px;
+      padding: 20px;
+    }
+    .recipe-list {
+      flex: 1;
+      background: #fff3e0;
+      padding: 15px;
+      border-radius: 10px;
+    }
+    .recipe-list h2 {
+      margin-bottom: 10px;
+    }
+    .recipe-list ul {
+      list-style: none;
+      padding: 0;
+    }
+    .recipe-list li {
+      padding: 10px;
+      background: #ffe0b2;
+      margin: 5px 0;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .recipe-list li:hover {
+      background: #ffcc80;
+    }
+    .recipe-details {
+      flex: 2;
+      background: #fff8e1;
+      padding: 15px;
+      border-radius: 10px;
+    }
+    .recipe-details h2 {
+      color: #e65100;
+    }
+    .ingredients, .steps {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🍴 My Cookbook</h1>
+  </header>
+
+  <div class="container">
+    <div class="recipe-list">
+      <h2>Recipes</h2>
+      <ul id="recipes">
+        <li onclick="showRecipe('pasta')">Creamy Pasta</li>
+        <li onclick="showRecipe('pancakes')">Fluffy Pancakes</li>
+        <li onclick="showRecipe('salad')">Fresh Salad</li>
+      </ul>
+    </div>
+
+    <div class="recipe-details" id="details">
+      <h2>Choose a recipe to see details</h2>
+    </div>
+  </div>
+
+  <script>
+    const recipeData = {
+      pasta: {
+        name: "Creamy Pasta",
+        ingredients: ["200g pasta", "1 cup cream", "2 garlic cloves", "Cheese", "Salt & Pepper"],
+        steps: ["Boil pasta", "Prepare sauce with garlic & cream", "Mix pasta & sauce", "Top with cheese"]
+      },
+      pancakes: {
+        name: "Fluffy Pancakes",
+        ingredients: ["1 cup flour", "1 egg", "1 cup milk", "2 tbsp sugar", "Butter"],
+        steps: ["Mix ingredients", "Pour batter on pan", "Cook until golden", "Serve with syrup"]
+      },
+      salad: {
+        name: "Fresh Salad",
+        ingredients: ["Lettuce", "Tomatoes", "Cucumber", "Olive oil", "Lemon juice"],
+        steps: ["Chop veggies", "Mix in bowl", "Add olive oil & lemon juice", "Serve fresh"]
+      }
+    };
+
+    function showRecipe(key) {
+      const recipe = recipeData[key];
+      document.getElementById("details").innerHTML = `
+        <h2>${recipe.name}</h2>
+        <div class="ingredients">
+          <h3>Ingredients:</h3>
+          <ul>${recipe.ingredients.map(i => <li>${i}</li>).join("")}</ul>
+        </div>
+        <div class="steps">
+          <h3>Steps:</h3>
+          <ol>${recipe.steps.map(s => <li>${s}</li>).join("")}</ol>
+        </div>
+      `;
+    }
+  </script>
+</body>
+</html>
